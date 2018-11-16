@@ -3,13 +3,13 @@ call plug#begin('~/.vim/plugins')
 " Editor Support
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
-" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'flazz/vim-colorschemes'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mattn/emmet-vim'
 " Plug 'mileszs/ack.vim'
-" Plug 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 " Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-fugitive'
@@ -17,7 +17,7 @@ Plug 'scrooloose/nerdtree'
 " Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-sensible'
 " Plug 'tpope/vim-surround'
-" Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 "
 " " Language Supports
@@ -100,4 +100,26 @@ let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize = 35
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeNatureSort = 1
+
+" Vim-Airline
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
+
+" CtrlP
+
+let g:ctrlp_max_height = 20
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|undo|log|tmp|node_modules)$',
+  \ 'file': '\v\.(exe|so|dll|swp)$',
+  \ 'link': '',
+  \ }
+let g:ctrlp_working_path_mode = 'a'
+
+" better-whitespace
+
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+highlight ExtraWhitespace ctermbg=red
 
