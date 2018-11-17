@@ -18,7 +18,7 @@ Plug 'scrooloose/nerdtree'
 " Plug 'tpope/vim-sensible'
 " Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 "
 " " Language Supports
 "
@@ -44,6 +44,9 @@ call plug#end()
 " You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
 " We set it explicitely to make our position clear!
 set nocompatible
+
+" Centralize swp files
+set directory   =~/.vim/recovery
 
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
@@ -85,7 +88,7 @@ endif
 
 set wildmenu
 set wildignorecase
-set wildignore=*.o,*~,*.pyc,*.bak,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+set wildignore=*.o,*~,*.pyc,*.bak,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/node_modules/**
 
 set path+=**
 set scrolloff=5
