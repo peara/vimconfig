@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugins')
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mattn/emmet-vim'
@@ -48,6 +48,7 @@ set nocompatible
 " Centralize swp files
 set directory   =~/.vim/recovery
 
+colorscheme hotpot
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 
