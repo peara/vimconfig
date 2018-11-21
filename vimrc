@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugins')
 " Editor Support
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
+Plug 'tomlion/vim-solidity'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'flazz/vim-colorschemes'
 " Plug 'jiangmiao/auto-pairs'
@@ -126,4 +127,17 @@ let g:ctrlp_working_path_mode = 'a'
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 highlight ExtraWhitespace ctermbg=red
+
+" Setting ctags for solidity
+
+let g:tagbar_type_solidity = {
+    \ 'ctagstype': 'solidity',
+    \ 'kinds' : [
+        \ 'c:contracts',
+        \ 'e:events',
+        \ 'f:functions',
+        \ 'm:mappings',
+        \ 'v:varialbes',
+    \ ]
+\ }
 
