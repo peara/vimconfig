@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugins')
 Plug 'tomlion/vim-solidity'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'craigemery/vim-autotag'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mattn/emmet-vim'
@@ -141,3 +142,9 @@ let g:tagbar_type_solidity = {
     \ ]
 \ }
 
+
+
+
+" Custom keymap
+:let mapleader = ","
+nnoremap <leader>. :CtrlPTag<cr>
