@@ -21,6 +21,9 @@ Plug 'scrooloose/nerdtree'
 " Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-syntastic/syntastic'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 "
 " " Language Supports
 "
@@ -50,7 +53,7 @@ set nocompatible
 " Centralize swp files
 set directory   =~/.vim/recovery
 
-colorscheme hotpot
+colorscheme symfony
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 
@@ -98,6 +101,9 @@ set scrolloff=5
 set number
 set nospell
 
+" fix when press Esc Shift o fast
+set timeout timeoutlen=5000 ttimeoutlen=100
+
 " NERDTree
 
 let g:NERDTreeWinPos = 'left'
@@ -142,9 +148,35 @@ let g:tagbar_type_solidity = {
     \ ]
 \ }
 
+" Syntastic
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_solidity_checkers = ['solhint']
+
+" Session
+
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'
+let g:session_verbose_messages = 0
+let g:session_default_name = fnamemodify(getcwd(), ':t')
+if empty(g:session_default_name)
+    autocmd VimEnter  * OpenSession! g:session_default_name
+endif
+autocmd VimLeavePre  * SaveSession
 
 " Custom keymap
 :let mapleader = ","
 nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>w :w<cr>
+nnoremap <leader><leader> <C-w>
+
+" Custom for language
+autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
+
