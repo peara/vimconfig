@@ -1,14 +1,14 @@
 call plug#begin('~/.vim/plugins')
 
 " Editor Support
-" Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
 Plug 'tomlion/vim-solidity'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'flazz/vim-colorschemes'
+Plug 'peara/vim-colorschemes'
 Plug 'craigemery/vim-autotag'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'jiangmiao/auto-pairs'
+Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mattn/emmet-vim'
 " Plug 'mileszs/ack.vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -18,7 +18,7 @@ Plug 'scrooloose/nerdtree'
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-sensible'
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
@@ -53,7 +53,7 @@ set nocompatible
 " Centralize swp files
 set directory   =~/.vim/recovery
 
-colorscheme symfony
+colorscheme dracula
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 
@@ -171,6 +171,11 @@ if empty(g:session_default_name)
 endif
 autocmd VimLeavePre  * SaveSession
 
+" Auto-Pair
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<M-b>'
+let g:AutoPairsMapCR = 1
+
 " Custom keymap
 :let mapleader = ","
 nnoremap <leader>. :CtrlPTag<cr>
@@ -179,4 +184,4 @@ nnoremap <leader><leader> <C-w>
 
 " Custom for language
 autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
-
+command! SetColors all
