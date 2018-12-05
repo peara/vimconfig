@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugins')
 
 " Editor Support
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
 Plug 'tomlion/vim-solidity'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -165,7 +165,7 @@ let g:syntastic_solidity_checkers = ['solhint']
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_verbose_messages = 0
-let g:session_default_name = fnamemodify(getcwd(), ':t')
+let g:session_default_name = getcwd()
 if empty(g:session_default_name)
     autocmd VimEnter  * OpenSession! g:session_default_name
 endif
@@ -181,6 +181,7 @@ let g:AutoPairsMapCR = 1
 nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader><leader> <C-w>
+nnoremap <silent><leader>e :NERDTreeToggle<cr>
 
 " Custom for language
 autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
