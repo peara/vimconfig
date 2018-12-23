@@ -2,28 +2,34 @@ call plug#begin('~/.vim/plugins')
 
 " Editor Support
 Plug 'Valloric/YouCompleteMe'
+Plug 'jiangmiao/auto-pairs'
 " Plug 'Yggdroot/indentLine'
+
+" Language support
 Plug 'tomlion/vim-solidity'
+Plug 'pangloss/vim-javascript'
+
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'peara/vim-colorschemes'
-Plug 'craigemery/vim-autotag'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'craigemery/vim-autotag'
+" Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mattn/emmet-vim'
 " Plug 'mileszs/ack.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 " Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-syntastic/syntastic'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-session'
 "
 " " Language Supports
 "
@@ -56,6 +62,7 @@ set directory   =~/.vim/recovery
 colorscheme dracula
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
+packadd! matchit
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
@@ -85,6 +92,9 @@ set wrapscan               " Searches wrap around end-of-file.
 set report      =0         " Always report changed lines.
 set synmaxcol   =200       " Only highlight the first 200 columns.
 
+set splitbelow
+set splitright
+
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
@@ -99,6 +109,7 @@ set wildignore=*.o,*~,*.pyc,*.bak,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/node_m
 set path+=**
 set scrolloff=5
 set number
+set numberwidth=5
 set nospell
 
 " fix when press Esc Shift o fast
@@ -149,27 +160,32 @@ let g:tagbar_type_solidity = {
 \ }
 
 " Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_solidity_checkers = ['solhint']
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_solidity_checkers = ['solhint']
+" ALE
+let g:ale_sign_column_always = 1
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'solidity' : ['solhint']
+\}
 
 " Session
 
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
-let g:session_verbose_messages = 0
-let g:session_default_name = fnamemodify(getcwd(), ':t')
-if empty(g:session_default_name)
-    autocmd VimEnter  * OpenSession! g:session_default_name
-endif
-autocmd VimLeavePre  * SaveSession
+" let g:session_autoload = 'yes'
+" let g:session_autosave = 'yes'
+" let g:session_verbose_messages = 0
+" let g:session_default_name = fnamemodify(getcwd(), ':t')
+" if empty(g:session_default_name)
+"     autocmd VimEnter  * OpenSession! g:session_default_name
+" endif
+" autocmd VimLeavePre  * SaveSession
 
 " Auto-Pair
 let g:AutoPairsFlyMode = 0
@@ -182,6 +198,15 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader><leader> <C-w>
 
+" Tagbar
+
+nmap <F8> :TagbarToggle<CR>
+
 " Custom for language
-autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
+" autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
 command! SetColors all
+
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
