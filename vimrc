@@ -1,11 +1,14 @@
 call plug#begin('~/.vim/plugins')
 
 " Editor Support
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'Yggdroot/indentLine'
 
 " Language support
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'Yggdroot/indentLine'
+Plug 'ervandew/supertab'
 Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
 
@@ -46,6 +49,8 @@ Plug 'w0rp/ale'
 " Plug 'pangloss/vim-javascript'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'mxw/vim-jsx'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -181,7 +186,7 @@ let g:ale_linters = {
 " let g:session_autoload = 'yes'
 " let g:session_autosave = 'yes'
 " let g:session_verbose_messages = 0
-" let g:session_default_name = fnamemodify(getcwd(), ':t')
+" let g:session_default_name = getcwd()
 " if empty(g:session_default_name)
 "     autocmd VimEnter  * OpenSession! g:session_default_name
 " endif
@@ -197,6 +202,8 @@ let g:AutoPairsMapCR = 1
 nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader><leader> <C-w>
+nnoremap <silent><leader>e :NERDTreeToggle<cr>
+nmap <C-o> <Nop>
 
 " Tagbar
 
