@@ -3,10 +3,11 @@ call plug#begin('~/.vim/plugins')
 " Editor Support
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
+Plug 'ervandew/supertab'
 Plug 'tomlion/vim-solidity'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'peara/vim-colorschemes'
-Plug 'craigemery/vim-autotag'
+" Plug 'craigemery/vim-autotag'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mattn/emmet-vim'
@@ -14,7 +15,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 " Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-sensible'
@@ -22,8 +23,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-session'
 "
 " " Language Supports
 "
@@ -40,6 +41,8 @@ Plug 'xolox/vim-session'
 " Plug 'pangloss/vim-javascript'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'mxw/vim-jsx'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -162,14 +165,14 @@ let g:syntastic_solidity_checkers = ['solhint']
 
 " Session
 
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
-let g:session_verbose_messages = 0
-let g:session_default_name = getcwd()
-if empty(g:session_default_name)
-    autocmd VimEnter  * OpenSession! g:session_default_name
-endif
-autocmd VimLeavePre  * SaveSession
+" let g:session_autoload = 'yes'
+" let g:session_autosave = 'yes'
+" let g:session_verbose_messages = 0
+" let g:session_default_name = getcwd()
+" if empty(g:session_default_name)
+"     autocmd VimEnter  * OpenSession! g:session_default_name
+" endif
+" autocmd VimLeavePre  * SaveSession
 
 " Auto-Pair
 let g:AutoPairsFlyMode = 0
@@ -182,6 +185,7 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader><leader> <C-w>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
+nmap <C-o> <Nop>
 
 " Custom for language
 autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
