@@ -16,6 +16,7 @@ Plug 'mileszs/ack.vim'
 Plug 'ervandew/supertab'
 Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'peara/vim-colorschemes'
@@ -197,6 +198,8 @@ let g:ale_linters = {
 
 " Ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 
 
 " Session
