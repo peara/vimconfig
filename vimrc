@@ -4,6 +4,11 @@ call plug#begin('~/.vim/plugins')
 " Plug 'Valloric/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'mileszs/ack'
 
 " Language support
 " Plug 'Valloric/YouCompleteMe'
@@ -21,14 +26,18 @@ Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mileszs/ack.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
-" Plug 'tpope/vim-commentary'
+
+" Others
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+
+
 " Plug 'tpope/vim-obsession'
-" Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-thems'
+Plug 'itchyny/lightline.vim'
+
 " Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 " Plug 'xolox/vim-misc'
@@ -46,7 +55,6 @@ Plug 'w0rp/ale'
 " Plug 'hail2u/vim-css3-syntax'
 "
 " " Javascript/Typescript
-" Plug 'pangloss/vim-javascript'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'mxw/vim-jsx'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -64,7 +72,6 @@ set nocompatible
 " Centralize swp files
 set directory   =~/.vim/recovery
 
-colorscheme dracula
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 packadd! matchit
@@ -120,8 +127,8 @@ set nospell
 " fix when press Esc Shift o fast
 set timeout timeoutlen=5000 ttimeoutlen=100
 
-" NERDTree
 
+" NERDTree
 let g:NERDTreeWinPos = 'left'
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
@@ -129,13 +136,13 @@ let g:NERDTreeWinSize = 35
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeNatureSort = 1
 
-" Vim-Airline
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#whitespace#enabled = 0
+" Vim-Airline
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#whitespace#enabled = 0
+
 
 " CtrlP
-
 let g:ctrlp_max_height = 20
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
@@ -145,14 +152,14 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_working_path_mode = 'a'
 
-" better-whitespace
 
+" better-whitespace
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 highlight ExtraWhitespace ctermbg=red
 
-" Setting ctags for solidity
 
+" Setting ctags for solidity
 let g:tagbar_type_solidity = {
     \ 'ctagstype': 'solidity',
     \ 'kinds' : [
@@ -164,6 +171,7 @@ let g:tagbar_type_solidity = {
     \ ]
 \ }
 
+
 " Syntastic
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
@@ -174,15 +182,24 @@ let g:tagbar_type_solidity = {
 " let g:syntastic_check_on_wq = 0
 " let g:syntastic_solidity_checkers = ['solhint']
 
+
 " ALE
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'solidity' : ['solhint']
 \}
 
-" Session
 
+" Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+
+" Session
 " let g:session_autoload = 'yes'
 " let g:session_autosave = 'yes'
 " let g:session_verbose_messages = 0
@@ -192,10 +209,12 @@ let g:ale_linters = {
 " endif
 " autocmd VimLeavePre  * SaveSession
 
+
 " Auto-Pair
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 let g:AutoPairsMapCR = 1
+
 
 " Custom keymap
 :let mapleader = ","
@@ -205,9 +224,62 @@ nnoremap <leader><leader> <C-w>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
 nmap <C-o> <Nop>
 
+
 " Tagbar
 
 nmap <F8> :TagbarToggle<CR>
+
+
+" Lightline
+set noshowmode
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']],
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK',
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error',
+\ },
+\ }
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
 
 " Custom for language
 " autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
@@ -217,3 +289,5 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+
+colorscheme dracula
