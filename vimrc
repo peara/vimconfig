@@ -8,7 +8,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'mileszs/ack'
+Plug 'mileszs/ack.vim'
 
 " Language support
 " Plug 'Valloric/YouCompleteMe'
