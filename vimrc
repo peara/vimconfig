@@ -71,7 +71,8 @@ call plug#end()
 set nocompatible
 
 " Centralize swp files
-set directory   =~/.vim/recovery
+" set directory   =~/.vim/recovery
+set noswapfile
 
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
@@ -136,6 +137,7 @@ let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize = 35
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeNatureSort = 1
+nnoremap <F10> :NERDTreeToggle<CR>
 
 
 " Vim-Airline
