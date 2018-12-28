@@ -129,6 +129,8 @@ set nospell
 " fix when press Esc Shift o fast
 set timeout timeoutlen=5000 ttimeoutlen=100
 
+" For easy copy paste with clipboard
+set clipboard=unnamedplus
 
 " NERDTree
 let g:NERDTreeWinPos = 'left'
