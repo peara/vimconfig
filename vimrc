@@ -18,7 +18,7 @@ Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'peara/vim-colorschemes'
 " Plug 'craigemery/vim-autotag'
 " Plug 'majutsushi/tagbar'
@@ -146,16 +146,20 @@ nnoremap <F10> :NERDTreeToggle<CR>
 " let g:airline_powerline_fonts = 1
 " let g:airline#extensions#whitespace#enabled = 0
 
+" FZF
+nmap ' :Buffers<CR>
+nmap <Leader>p :Files<CR>
+nmap <Leader>t :Tags<CR>
 
 " CtrlP
-let g:ctrlp_max_height = 20
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|undo|log|tmp|node_modules)$',
-  \ 'file': '\v\.(exe|so|dll|swp)$',
-  \ 'link': '',
-  \ }
-let g:ctrlp_working_path_mode = 'a'
+" let g:ctrlp_max_height = 20
+" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/](\.(git|hg|svn)|undo|log|tmp|node_modules)$',
+"   \ 'file': '\v\.(exe|so|dll|swp)$',
+"   \ 'link': '',
+"   \ }
+" let g:ctrlp_working_path_mode = 'a'
 
 
 " better-whitespace
