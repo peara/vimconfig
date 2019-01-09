@@ -1,3 +1,4 @@
+let mapleader = ","
 call plug#begin('~/.vim/plugins')
 
 " Editor Support
@@ -148,8 +149,8 @@ nnoremap <F10> :NERDTreeToggle<CR>
 
 " FZF
 nmap ' :Buffers<CR>
-nmap <Leader>p :Files<CR>
-nmap <Leader>t :Tags<CR>
+nmap <leader>p :Files<CR>
+nmap <leader>t :Tags<CR>
 
 " CtrlP
 " let g:ctrlp_max_height = 20
@@ -204,10 +205,6 @@ let g:ale_linters = {
 \}
 
 
-" Ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
 
 
 " Session
@@ -228,7 +225,6 @@ let g:AutoPairsMapCR = 1
 
 
 " Custom keymap
-:let mapleader = ","
 nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader><leader> <C-w>
@@ -300,5 +296,10 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+
+" Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+cnoreabbrev Ack Ack!
+nnoremap <leader>a :Ack!<Space>
 
 colorscheme dracula
