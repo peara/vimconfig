@@ -296,6 +296,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+au BufNewFile,BufRead *.slb set filetype=solidity
 
 " Ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
