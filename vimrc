@@ -19,8 +19,9 @@ Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+Plug 'ajh17/Spacegray.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
-Plug 'peara/vim-colorschemes'
+" Plug 'peara/vim-colorschemes'
 " Plug 'craigemery/vim-autotag'
 " Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
@@ -203,8 +204,8 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'solidity' : ['solhint']
 \}
-
-
+let b:ale_fixers = {'javascript': ['eslint']}
+let g:ale_fix_on_save = 1
 
 
 " Session
@@ -231,10 +232,8 @@ nnoremap <leader><leader> <C-w>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
 nmap <C-o> <Nop>
 
-
 " Tagbar
-
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
 
 
 " Lightline
@@ -301,6 +300,7 @@ au BufNewFile,BufRead *.slb set filetype=solidity
 " Ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 cnoreabbrev Ack Ack!
-nnoremap <leader>a :Ack!<Space>
+nnoremap <leader>a :Ag<Space>
 
-colorscheme dracula
+colorscheme spacegray
+hi Normal ctermbg=None
