@@ -19,9 +19,9 @@ Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+Plug 'ajh17/Spacegray.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'peara/vim-colorschemes'
-Plug 'ajh17/Spacegray.vim'
 " Plug 'craigemery/vim-autotag'
 " Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
@@ -199,6 +199,8 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'solidity' : ['solhint']
 \}
+let b:ale_fixers = {'javascript': ['eslint']}
+let g:ale_fix_on_save = 1
 
 
 " Session
@@ -224,10 +226,8 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader><leader> <C-w>
 nmap <C-o> <Nop>
 
-
 " Tagbar
-
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
 
 
 " Lightline
@@ -289,13 +289,15 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+au BufNewFile,BufRead *.slb set filetype=solidity
 
 " Ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 cnoreabbrev Ack Ack!
-nnoremap <leader>a :Ack!<Space>
+nnoremap <leader>a :Ag<Space>
 
 colorscheme spacegray
 let g:spacegray_underline_search = 0
 let g:spacegray_use_italics = 1
 let g:spacegray_low_contrast = 0
+hi Normal ctermbg=None
