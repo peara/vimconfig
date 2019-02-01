@@ -38,8 +38,6 @@ Plug 'tpope/vim-rhubarb'
 
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-sensible'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-thems'
 Plug 'itchyny/lightline.vim'
 
 " Plug 'vim-syntastic/syntastic'
@@ -112,6 +110,17 @@ set synmaxcol   =200       " Only highlight the first 200 columns.
 set splitbelow
 set splitright
 
+" change cursor shape
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
@@ -145,11 +154,8 @@ let g:NERDTreeNatureSort = 1
 nnoremap <F10> :NERDTreeToggle<CR>
 
 
-" Vim-Airline
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#whitespace#enabled = 0
-
 " FZF
+let $FZF_DEFAULT_COMMAND='ag -g ""'
 nmap ' :Buffers<CR>
 nmap <leader>p :Files<CR>
 nmap <leader>t :Tags<CR>
@@ -182,17 +188,6 @@ let g:tagbar_type_solidity = {
         \ 'v:varialbes',
     \ ]
 \ }
-
-
-" Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_solidity_checkers = ['solhint']
 
 
 " ALE
@@ -303,4 +298,7 @@ cnoreabbrev Ack Ack!
 nnoremap <leader>a :Ag<Space>
 
 colorscheme spacegray
+let g:spacegray_underline_search = 0
+let g:spacegray_use_italics = 1
+let g:spacegray_low_contrast = 0
 hi Normal ctermbg=None
