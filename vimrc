@@ -10,6 +10,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'mileszs/ack.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Language support
 " Plug 'Valloric/YouCompleteMe'
@@ -230,7 +231,6 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader><leader> <C-w>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
-nmap <C-o> <Nop>
 
 " Tagbar
 " nmap <F8> :TagbarToggle<CR>
