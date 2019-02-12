@@ -9,7 +9,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'mileszs/ack.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Language support
@@ -27,7 +26,6 @@ Plug 'ajh17/Spacegray.vim'
 " Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mattn/emmet-vim'
-" Plug 'mileszs/ack.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 
@@ -156,7 +154,7 @@ nnoremap <F10> :NERDTreeToggle<CR>
 
 
 " FZF
-let $FZF_DEFAULT_COMMAND='ag -g ""'
+let $FZF_DEFAULT_COMMAND='rg --files'
 nmap ' :Buffers<CR>
 nmap <leader>p :Files<CR>
 nmap <leader>t :Tags<CR>
@@ -293,10 +291,7 @@ autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 au BufNewFile,BufRead *.slb set filetype=solidity
 
-" Ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-cnoreabbrev Ack Ack!
-nnoremap <leader>a :Ag<Space>
+nnoremap <leader>a :Rg<Space>
 
 colorscheme spacegray
 let g:spacegray_underline_search = 0
