@@ -1,4 +1,4 @@
-let mapleader = ","
+let mapleader = " "
 call plug#begin('~/.vim/plugins')
 
 " Editor Support
@@ -106,6 +106,7 @@ set cursorline             " Find the current line quickly.
 set wrapscan               " Searches wrap around end-of-file.
 set report      =0         " Always report changed lines.
 set synmaxcol   =200       " Only highlight the first 200 columns.
+set nowrap
 
 set splitbelow
 set splitright
