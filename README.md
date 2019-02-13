@@ -15,7 +15,7 @@ cd vim
 	    --enable-python3interp=yes \
 	    --with-python3-config-dir=/usr/lib/python3.6/config \
 	    --enable-perlinterp=yes \
-      --enable-clipboard=yes \
+            --with-x \
 	    --enable-luainterp=yes \
             --enable-gui=gtk2 \
             --enable-cscope \
