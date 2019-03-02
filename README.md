@@ -3,6 +3,9 @@
 ## build Vim from source
 
 ```
+// install vim-gtk dependencies
+sudo apt build-dep vim-gtk
+
 cd ~
 git clone https://github.com/vim/vim.git
 cd vim
