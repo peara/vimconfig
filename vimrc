@@ -23,7 +23,7 @@ Plug 'ajh17/Spacegray.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'peara/vim-colorschemes'
 " Plug 'craigemery/vim-autotag'
-" Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 " Plug 'mattn/emmet-vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -150,7 +150,6 @@ let g:NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize = 35
 let g:NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeNatureSort = 1
-nnoremap <F10> :NERDTreeToggle<CR>
 
 
 " FZF
@@ -199,7 +198,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'solidity' : ['solhint']
 \}
-let b:ale_fixers = {'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_fix_on_save = 1
 
 
@@ -221,14 +220,15 @@ let g:AutoPairsMapCR = 1
 
 
 " Custom keymap
-nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>. :Tags<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader><leader> <C-w>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
-
-" Tagbar
-" nmap <F8> :TagbarToggle<CR>
-
+nnoremap <leader>a :Rg<Space>
+nnoremap <leader>f :ALEFix<cr>
+nnoremap <leader>t :TagbarToggle<cr>
+nnoremap <leader>h :noh<cr>
+nnoremap Q <Nop>
 
 " Lightline
 set noshowmode
@@ -291,7 +291,6 @@ autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 au BufNewFile,BufRead *.slb set filetype=solidity
 
-nnoremap <leader>a :Rg<Space>
 
 colorscheme spacegray
 let g:spacegray_underline_search = 0
