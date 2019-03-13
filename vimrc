@@ -18,6 +18,7 @@ Plug 'ervandew/supertab'
 Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'sheerun/vim-polyglot'
 
 Plug 'ajh17/Spacegray.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
@@ -25,7 +26,7 @@ Plug 'ajh17/Spacegray.vim'
 " Plug 'craigemery/vim-autotag'
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
-" Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 
@@ -133,7 +134,13 @@ set wildignore=*.o,*~,*.pyc,*.bak,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/node_m
 
 set path+=**
 set scrolloff=5
-set number
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 set numberwidth=5
 set nospell
 
@@ -222,12 +229,11 @@ let g:AutoPairsMapCR = 1
 " Custom keymap
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>w :w<cr>
-nnoremap <leader><leader> <C-w>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
 nnoremap <leader>a :Rg<Space>
 nnoremap <leader>f :ALEFix<cr>
 nnoremap <leader>t :TagbarToggle<cr>
-nnoremap <leader>h :noh<cr>
+nnoremap <silent><leader>h :noh<cr>
 nnoremap Q <Nop>
 
 " Lightline
@@ -289,6 +295,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType go setlocal shiftwidth=8 tabstop=8
 au BufNewFile,BufRead *.slb set filetype=solidity
 
 
