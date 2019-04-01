@@ -138,6 +138,7 @@ set scrolloff=5
 
 set numberwidth=5
 set nospell
+set number relativenumber
 
 " fix when press Esc Shift o fast
 set timeout timeoutlen=5000 ttimeoutlen=100
