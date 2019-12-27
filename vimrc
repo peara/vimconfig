@@ -15,7 +15,9 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 " Language support
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
-Plug 'ervandew/supertab'
+if !exists('veonim')
+  Plug 'ervandew/supertab'
+endif
 Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -34,7 +36,8 @@ Plug 'scrooloose/nerdtree'
 " Others
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-
+Plug 'thinca/vim-localrc'
+Plug 'justinmk/vim-sneak'
 
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-sensible'
@@ -64,6 +67,48 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
+" VEONIM
+if exists('veonim')
+
+" multiple nvim instances
+nno <silent> <c-t>c :Veonim vim-create<cr>
+nno <silent> <c-g> :Veonim vim-switch<cr>
+nno <silent> <c-t>, :Veonim vim-rename<cr>
+
+" workspace functions
+nno <silent> <leader>f :Veonim files<cr>
+nno <silent> <leader>e :Veonim explorer<cr>
+nno <silent> <leader>b :Veonim buffers<cr>
+nno <silent> ,d :Veonim change-dir<cr>
+"or with a starting dir: nno <silent> ,d :Veonim change-dir ~/proj<cr>
+
+" searching text
+nno <silent> <space>fw :Veonim grep-word<cr>
+vno <silent> <space>fw :Veonim grep-selection<cr>
+nno <silent> <space>fa :Veonim grep<cr>
+nno <silent> <space>ff :Veonim grep-resume<cr>
+nno <silent> <space>fb :Veonim buffer-search<cr>
+
+" language features
+nno <silent> sr :Veonim rename<cr>
+nno <silent> sd :Veonim definition<cr>
+nno <silent> si :Veonim implementation<cr>
+nno <silent> st :Veonim type-definition<cr>
+nno <silent> sf :Veonim references<cr>
+nno <silent> sh :Veonim hover<cr>
+nno <silent> sl :Veonim symbols<cr>
+nno <silent> so :Veonim workspace-symbols<cr>
+nno <silent> sq :Veonim code-action<cr>
+nno <silent> sk :Veonim highlight<cr>
+nno <silent> sK :Veonim highlight-clear<cr>
+nno <silent> ,n :Veonim next-usage<cr>
+nno <silent> ,p :Veonim prev-usage<cr>
+nno <silent> sp :Veonim show-problem<cr>
+nno <silent> <c-n> :Veonim next-problem<cr>
+nno <silent> <c-p> :Veonim prev-problem<cr>
+
+endif
+
 " A (not so) minimal vimrc.
 "
 
@@ -77,7 +122,9 @@ set noswapfile
 
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
-packadd! matchit
+if !has('nvim')
+  packadd! matchit
+endif
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
@@ -228,6 +275,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
 nnoremap <leader>a :Rg<Space>
 nnoremap <leader>f :ALEFix<cr>
+nnoremap <leader>n :ALENextWrap<cr>
 nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <silent><leader>h :noh<cr>
 nnoremap Q <Nop>
@@ -284,6 +332,9 @@ endfunction
 
 
 " Custom for language
+" disable syntax for vue
+" let g:polyglot_disabled = ['vue']
+
 " autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
 command! SetColors all
 
@@ -300,3 +351,4 @@ let g:spacegray_underline_search = 0
 let g:spacegray_use_italics = 1
 let g:spacegray_low_contrast = 0
 hi Normal ctermbg=None
+hi CursorLine cterm=NONE ctermbg=NONE
