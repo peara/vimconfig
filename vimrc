@@ -12,12 +12,16 @@ Plug 'tpope/vim-commentary'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
+Plug 'github/copilot.vim'
+
 " Language support
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
 " Plug 'ervandew/supertab'
 Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
+" disable syntax for python
+let g:polyglot_disabled = ['python']
 Plug 'sheerun/vim-polyglot'
 
 Plug 'ajh17/Spacegray.vim'
@@ -89,8 +93,6 @@ endif
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
-set softtabstop =4         " Tab key indents by 4 spaces.
-set shiftwidth  =4         " >> indents by 4 spaces.
 set shiftround             " >> indents to next multiple of 'shiftwidth'.
 
 set backspace   =indent,eol,start  " Make backspace work as you would expect.
@@ -123,7 +125,7 @@ set splitright
 let g:NERDTreeLimitedSyntax = 1
 
 " Python Path
-let g:python_host_prog='/usr/bin/python'
+" let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
 
 " Coc
@@ -176,8 +178,8 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -379,11 +381,9 @@ highlight link ALEErrorSign Title
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
 \   'python': ['pyright'],
-\   'javascript': ['eslint'],
 \   'solidity' : ['solhint']
 \}
 let g:ale_fixers = {
-\ 'javascript': ['eslint'],
 \ 'python': ['yapf'],
 \}
 let g:ale_fix_on_save = 1
@@ -471,8 +471,6 @@ endfunction
 
 
 " Custom for language
-" disable syntax for python
-let g:polyglot_disabled = ['python']
 
 " autocmd BufRead,BufNewFile   *.sol,*.slb set softtabstop=4 shiftwidth=4
 command! SetColors all
@@ -480,11 +478,13 @@ command! SetColors all
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 " autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd FileType solidity setlocal expandtab shiftwidth=4 softtabstop=4
-autocmd FileType javascript setlocal shiftwidth=4 tabstop=4
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
+autocmd FileType typescriptreact setlocal shiftwidth=2 softtabstop=2
+autocmd FileType scss setlocal shiftwidth=2 softtabstop=2
 autocmd FileType go setlocal shiftwidth=8 tabstop=8
 au BufNewFile,BufRead *.slb set filetype=solidity
 
-colorscheme zenburn
+colorscheme flattened_dark
 let g:spacegray_underline_search = 0
 let g:spacegray_use_italics = 1
 let g:spacegray_low_contrast = 0
