@@ -15,10 +15,8 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'github/copilot.vim'
 
 " Language support
-" Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
-" Plug 'ervandew/supertab'
-Plug 'tomlion/vim-solidity'
+" Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
 " disable syntax for python
 let g:polyglot_disabled = ['python']
@@ -43,7 +41,7 @@ Plug 'jnurmine/Zenburn'
 " Plug 'tpope/vim-sensible'
 Plug 'itchyny/lightline.vim'
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-session'
 "
@@ -65,7 +63,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " " Python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -178,8 +176,8 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -374,19 +372,19 @@ let g:tagbar_type_solidity = {
 
 
 " ALE
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-let g:ale_sign_column_always = 1
-let g:ale_linters = {
-\   'python': ['pyright'],
-\   'solidity' : ['solhint']
-\}
-let g:ale_fixers = {
-\ 'python': ['yapf'],
-\}
-let g:ale_fix_on_save = 1
+" let g:ale_sign_warning = '▲'
+" let g:ale_sign_error = '✗'
+" highlight link ALEWarningSign String
+" highlight link ALEErrorSign Title
+" let g:ale_sign_column_always = 1
+" let g:ale_linters = {
+" \   'python': ['pyright'],
+" \   'solidity' : ['solhint']
+" \}
+" let g:ale_fixers = {
+" \ 'python': ['yapf'],
+" \}
+" let g:ale_fix_on_save = 1
 
 
 " Session
@@ -411,12 +409,14 @@ nnoremap <leader>. :Tags<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
 nnoremap <leader>a :Rg<Space>
-nnoremap <leader>f :ALEFix<cr>
-nnoremap <leader>n :ALENextWrap<cr>
+" nnoremap <leader>f :ALEFix<cr>
+" nnoremap <leader>n :ALENextWrap<cr>
 nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <silent><leader>h :noh<cr>
 nnoremap Q <Nop>
 nnoremap <Insert> <Nop>
+" wipeout current buffer and open last buffer
+nnoremap <leader>qq :b#<cr>:bd#<cr>
 " tnoremap <Esc> <C-\><C-n>
 
 " Lightline
