@@ -36,14 +36,15 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'thinca/vim-localrc'
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 Plug 'jnurmine/Zenburn'
+Plug 'easymotion/vim-easymotion'
 
 " Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-sensible'
 Plug 'itchyny/lightline.vim'
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 " Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-session'
 "
@@ -148,12 +149,8 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" Recently vim can merge signcolumn and number column into one
+set signcolumn=number
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -175,6 +172,20 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" Easymotion config
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+nmap <leader>j <Plug>(easymotion-j)
+nmap <leader>k <Plug>(easymotion-k)
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -285,9 +296,9 @@ nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
@@ -372,21 +383,20 @@ let g:tagbar_type_solidity = {
     \ ]
 \ }
 
-
 " ALE
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-let g:ale_sign_column_always = 1
-let g:ale_linters = {
-\   'python': ['pyright'],
-\   'solidity' : ['solhint']
-\}
-let g:ale_fixers = {
-\ 'python': ['yapf'],
-\}
-let g:ale_fix_on_save = 1
+" let g:ale_sign_warning = '▲'
+" let g:ale_sign_error = '✗'
+" highlight link ALEWarningSign String
+" highlight link ALEErrorSign Title
+" let g:ale_sign_column_always = 1
+" let g:ale_linters = {
+" \   'python': ['pyright'],
+" \   'solidity' : ['solhint']
+" \}
+" let g:ale_fixers = {
+" \ 'python': ['yapf'],
+" \}
+" let g:ale_fix_on_save = 1
 
 
 " Session
@@ -460,14 +470,14 @@ function! LightlineLinterOK() abort
   return l:counts.total == 0 ? '✓ ' : ''
 endfunction
 
-autocmd User ALELint call s:MaybeUpdateLightline()
+" autocmd User ALELint call s:MaybeUpdateLightline()
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
-function! s:MaybeUpdateLightline()
-  if exists('#lightline')
-    call lightline#update()
-  end
-endfunction
+" function! s:MaybeUpdateLightline()
+"   if exists('#lightline')
+"     call lightline#update()
+"   end
+" endfunction
 
 
 " Custom for language
@@ -485,9 +495,11 @@ autocmd FileType go setlocal shiftwidth=8 tabstop=8
 au BufNewFile,BufRead *.slb set filetype=solidity
 
 colorscheme flattened_dark
+
 let g:spacegray_underline_search = 0
 let g:spacegray_use_italics = 1
 let g:spacegray_low_contrast = 0
 hi Normal ctermbg=None
 hi CursorLine cterm=NONE ctermbg=NONE
+set fillchars=vert:\|" required whitespace
 hi Directory guifg=#FF0000 ctermfg=brown
