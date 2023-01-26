@@ -15,10 +15,8 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'github/copilot.vim'
 
 " Language support
-" Plug 'Valloric/YouCompleteMe'
 " Plug 'Yggdroot/indentLine'
-" Plug 'ervandew/supertab'
-Plug 'tomlion/vim-solidity'
+" Plug 'tomlion/vim-solidity'
 Plug 'pangloss/vim-javascript'
 " disable syntax for python
 let g:polyglot_disabled = ['python']
@@ -66,7 +64,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " " Python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -189,8 +187,8 @@ nmap <leader>k <Plug>(easymotion-k)
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -421,12 +419,14 @@ nnoremap <leader>. :Tags<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <silent><leader>e :NERDTreeToggle<cr>
 nnoremap <leader>a :Rg<Space>
-nnoremap <leader>f :ALEFix<cr>
-nnoremap <leader>n :ALENextWrap<cr>
+" nnoremap <leader>f :ALEFix<cr>
+" nnoremap <leader>n :ALENextWrap<cr>
 nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <silent><leader>h :noh<cr>
 nnoremap Q <Nop>
 nnoremap <Insert> <Nop>
+" wipeout current buffer and open last buffer
+nnoremap <leader>qq :b#<cr>:bd#<cr>
 " tnoremap <Esc> <C-\><C-n>
 
 " Lightline
