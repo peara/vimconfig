@@ -9,7 +9,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 Plug 'github/copilot.vim'
@@ -347,6 +347,9 @@ let g:NERDTreeNatureSort = 1
 
 " FZF
 let $FZF_DEFAULT_COMMAND='rg --files'
+" files in fzf
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
 nmap ' :Buffers<CR>
 nmap <leader>p :Files<CR>
 nmap <leader>t :Tags<CR>
